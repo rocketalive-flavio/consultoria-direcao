@@ -1,0 +1,106 @@
+/* base: reset, chrome compartilhado (cursor, preloader, nav, grain, grid) e
+   scaffolding de seção (.sec, .btn, .plate). Específico de seção vai em sections.css. */
+*{ box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+
+html.lenis,html.lenis body{ height:auto; }
+.lenis.lenis-smooth{ scroll-behavior:auto !important; }
+.lenis.lenis-stopped{ overflow:hidden; }
+
+body{ margin:0; background:var(--bg-0); color:var(--paper-0); font-family:var(--font-body); font-weight:300; line-height:1.55; -webkit-font-smoothing:antialiased; overflow-x:clip; }
+img{ display:block; width:100%; height:100%; object-fit:cover; }
+a{ color:inherit; text-decoration:none; }
+::selection{ background:var(--accent); color:var(--ink); }
+
+/* Texto só para leitores de tela — usado quando a composição visual quebra um
+   título em partes, mas a semântica precisa do texto inteiro num único heading. */
+.sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden;
+  clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+
+.mono{ font-family:var(--font-body); font-weight:400; font-size:.72rem; letter-spacing:.24em; text-transform:uppercase; }
+.accent{ color:var(--accent); }
+
+/* ── Chrome global: grain + grid-lines ── */
+/* overlay (não multiply): sobre uma base preta o multiply seria invisível. */
+.grain{ position:fixed; inset:0; z-index:80; pointer-events:none; opacity:.09; mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+
+/* Sem grid-lines verticais: a referência define blocos por superfície e raio,
+   não por malha de linhas. */
+
+/* ── Cursor customizado (ponto + anel) — só desktop ── */
+.cur,.cur-r{ position:fixed; top:0; left:0; z-index:90; pointer-events:none; transform:translate(-50%,-50%); border-radius:50%; will-change:transform; }
+.cur{ width:6px; height:6px; background:var(--accent); }
+.cur-r{ width:38px; height:38px; border:1px solid var(--rule-l2); transition:width .4s var(--ease), height .4s var(--ease), border-color .4s; }
+.cur-r[data-h="true"]{ width:70px; height:70px; border-color:var(--accent); }
+body.cursoron, body.cursoron a, body.cursoron button{ cursor:none; }
+@media (hover:none){ .cur,.cur-r{ display:none; } }
+
+/* Sem JS o cursor custom não faz sentido. */
+.no-js .cur,.no-js .cur-r{ display:none; }
+
+
+/* ── Nav: transparente no topo, scrim que dissolve ao rolar ── */
+/* Assinatura à esquerda, CTA à direita, ambos centrados na altura da barra. */
+.top{ position:fixed; inset:0 0 auto 0; z-index:50; height:var(--nav-h); display:flex; align-items:center; justify-content:space-between;
+  padding:0 var(--gx); background:transparent; color:var(--paper-0); transition:color .45s var(--ease); }
+/* Barra chapada com blur — sem degradê e sem máscara: o conteúdo que passa por
+   trás desaparece por completo, em vez de vazar pela borda de baixo. */
+.top::before{ content:""; position:absolute; inset:0; z-index:-1; pointer-events:none;
+  background:rgba(10,10,10,.86);
+  -webkit-backdrop-filter:blur(22px) saturate(1.1); backdrop-filter:blur(22px) saturate(1.1);
+  opacity:0; transition:opacity .45s var(--ease); }
+/* Sem backdrop-filter (Firefox antigo) a barra vira sólida, nunca semitransparente. */
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+  .top::before{ background:var(--bg-0); }
+}
+.top.is-stuck::before{ opacity:1; }
+.top__logo{ display:flex; align-items:center; min-height:44px; gap:.55em; white-space:nowrap;
+  font-family:var(--font-logo); text-transform:uppercase; font-size:clamp(.95rem,.75rem + .5vw,1.3rem); letter-spacing:.16em; }
+.top__mark{ width:1.65em; height:auto; flex:none; object-fit:contain; }
+/* min-height 44px: alvo de toque acessível mesmo com a fonte reduzida no mobile. */
+.top__cta{ display:inline-flex; align-items:center; min-height:44px; border:1px solid var(--paper-0);
+  border-radius:var(--r-pill); padding:.75em 1.5em; transition:background .3s, color .3s; }
+.top__cta:hover{ background:var(--paper-0); color:var(--ink); }
+@media (max-width:760px){
+  .top__logo{ letter-spacing:.1em; gap:.4em; }
+  .top__logo span:first-child{ display:none; }        /* mantém só ⌂ Direção no mobile */
+  .top__cta{ padding:.65em 1.15em; font-size:.72rem; }
+}
+
+/* ── Scaffolding de seção ── */
+main > *, .ft{ position:relative; z-index:2; }
+.sec{ padding:clamp(3.4rem,7.5vh,6rem) var(--gx); }
+.sec__head{ display:flex; flex-direction:column; gap:.9rem; margin-bottom:clamp(1.6rem,3.4vw,2.8rem); }
+.sec__head .mono{ color:var(--cream-2); }
+/* Escala em voz normal: o H1 do hero é o maior da página (4rem no topo da escala)
+   e os H2 ficam abaixo dele — antes estavam em 6.5rem, maiores que o próprio H1. */
+/* Escala única para toda headline de seção (a do "Para quem é a Direção?" virou
+   o padrão). Fora dela ficam só o H1 do hero e as seções sem headline. */
+.sec__h{ margin:0; font-family:var(--font-display); font-weight:var(--w-display);
+  font-size:clamp(2.4rem,1rem + 4.4vw,5.2rem); line-height:1.12; letter-spacing:-.035em; max-width:16ch; }
+.sec__h em{ font-style:normal; color:var(--accent); }
+
+/* Botões — herdam o pill radius da Norte (border-radius 55px), invertidos:
+   lá o sólido é preto sobre creme; aqui é creme sobre preto. */
+.btn{ display:inline-flex; align-items:center; justify-content:center; gap:.5em; border-radius:55px; cursor:pointer;
+  font-family:var(--font-body); font-weight:500; font-size:.76rem; letter-spacing:.18em; text-transform:uppercase;
+  padding:1.15em 1.9em; border:1px solid var(--paper-0); background:transparent; color:var(--paper-0);
+  transition:background .45s var(--ease), color .45s var(--ease), border-color .45s var(--ease); }
+.btn:hover{ background:var(--paper-0); color:var(--ink); }
+
+.btn--solid{ background:var(--paper-0); color:var(--ink); border-color:var(--paper-0); }
+.btn--solid:hover{ background:var(--accent); border-color:var(--accent); color:var(--ink); }
+.btn--ghost{ border-color:var(--rule-l2); color:var(--cream-1); }
+.btn--ghost:hover{ background:transparent; border-color:var(--paper-0); color:var(--paper-0); }
+
+/* Moldura de imagem: raio generoso, sem contorno — o bloco é a própria imagem. */
+.plate{ position:relative; overflow:hidden; border-radius:var(--r-lg); background:var(--surf-0); isolation:isolate; }
+.plate img{ transition:transform 1s var(--ease); }
+.plate:hover img{ transform:scale(1.04); }
+.plate figcaption{ position:absolute; left:clamp(.7rem,2%,1.1rem); bottom:clamp(.7rem,2%,1.1rem);
+  padding:.55em 1.1em; border-radius:var(--r-pill); background:var(--paper-0); color:var(--ink); }
+
+/* Word-paint ([data-fill]) — palavras acendem conforme o scroll */
+.fillst .w{ color:var(--cream-2); transition:color .25s; }
+.fillst .w.on{ color:var(--paper-0); }
+.fillst .w.accent.on{ color:var(--accent); }

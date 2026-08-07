@@ -1,0 +1,65 @@
+/* Consultoria Direção — design tokens. ÚNICA fonte de verdade visual: seções
+   consomem apenas estas variáveis, nunca valores crus.
+
+   Direção de arte: inversão exata da Norte Lançamentos. O site da Norte é claro
+   (#F8F6F3) com tipografia preta; a Direção é preta com os mesmos detalhes em
+   creme. Mesma marca, polaridade oposta. */
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400&family=Geist:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&display=swap');
+
+:root{
+  /* Paleta 80/20 — preto dominante + creme da Norte. Sem terceira cor. */
+  --bg-0:#0A0A0A;            /* base da página */
+  --bg-1:#0F0F0F;            /* seção alternativa */
+  --bg-2:#141414;            /* painel/plate sobre escuro */
+  --paper-0:#F8F6F3;         /* creme da Norte — texto principal sobre preto */
+  --paper-1:#E4E1DB;         /* creme alternativo */
+  --ink:#0A0A0A;             /* escuro principal (texto sobre claro) */
+  --ink-1:#3B3B3B;           /* escuro suave (herdado da Norte) */
+  --accent:#FFFFFF;          /* branco puro — os "detalhes em branco" */
+  --accent-d:#D8D4CD;
+
+  /* Linhas e véus */
+  --rule:rgba(10,10,10,.16);
+  --rule-2:rgba(10,10,10,.38);
+  --rule-l:rgba(248,246,243,.12);
+  --rule-l2:rgba(248,246,243,.28);
+  --cream-1:rgba(248,246,243,.68);  /* texto suave sobre escuro */
+  --cream-2:rgba(248,246,243,.40);  /* texto apagado sobre escuro */
+
+  /* Tipografia — Geist em toda a página, títulos e corpo, como na Norte.
+     A hierarquia vem de tamanho, peso e tracking, não de troca de família. */
+  --font-display:'Geist', system-ui, -apple-system, sans-serif;
+  --font-body:'Geist', system-ui, -apple-system, sans-serif;
+  /* Exceção deliberada: a assinatura do header mantém a serif — é o logotipo,
+     não texto corrido. Único uso de Bodoni na página. */
+  --font-logo:'Bodoni Moda', 'Times New Roman', serif;
+
+  /* Títulos em sans pedem peso e tracking próprios (a Norte usa 500 + tracking
+     negativo forte no h1); o corpo permanece leve. */
+  --w-display:500;
+  --track-display:-.03em;
+
+  /* Campos do formulário claro: cinza suave sobre o creme, clareando no foco. */
+  --field:#EDEBE7;
+  --field-focus:#F5F3F0;
+
+  /* Superfícies — no lugar de hairlines. Cards e molduras são definidos por
+     preenchimento + raio generoso (moodboard/referência), nunca por contorno. */
+  --surf-0:#131313;          /* card sobre a base */
+  --surf-1:#1A1A1A;          /* card em hover / sobre seção alternativa */
+
+  /* Raios — o pill de 55px vem direto dos botões da Norte. */
+  --r-lg:clamp(1.1rem, 2vw, 1.75rem);       /* molduras de imagem */
+  --r-md:clamp(.9rem, 1.5vw, 1.25rem);      /* cards */
+  --r-sm:.6rem;
+  --r-pill:55px;
+
+  /* Opacidade do palco 3D — a peça é atmosfera atrás do texto, não bloco sólido.
+     Vive aqui porque a animação de entrada do hero precisa parar neste valor. */
+  --stage-op:.5;
+
+  /* Ritmo e chrome */
+  --gx:clamp(1.1rem, 3.5vw, 3.5rem);        /* gutter horizontal global */
+  --nav-h:clamp(4.6rem, 8.5vh, 6.2rem);
+  --ease:cubic-bezier(.16,1,.3,1);
+}

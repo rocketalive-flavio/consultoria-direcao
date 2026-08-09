@@ -183,10 +183,11 @@
    e a quebra em dois blocos separa as duas ideias (o como e o objetivo). */
 /* Medida de linha na faixa confortável (~50 caracteres): estreita demais quebra
    o ritmo da leitura tanto quanto larga demais. */
-/* Os três blocos compartilham corpo e peso — a hierarquia fica só no terceiro,
-   que fecha o raciocínio em negrito. */
-.ac__st,.ac__nota{ margin:0; max-width:52ch; font-family:var(--font-display); font-weight:400;
-  font-size:clamp(1.05rem,.92rem + .62vw,1.55rem); line-height:1.5; letter-spacing:-.012em;
+/* Mesmo corpo e peso do parágrafo de "Como funciona" (19.5px / 300 / 1.55), para
+   os dois blocos de texto corrido da página lerem igual. A hierarquia fica só no
+   terceiro, que fecha o raciocínio em negrito. */
+.ac__st,.ac__nota{ margin:0; max-width:58ch; font-family:var(--font-body); font-weight:300;
+  font-size:clamp(1rem,.94rem + .4vw,1.22rem); line-height:1.55; letter-spacing:normal;
   color:var(--ink); }
 .ac__nota{ font-weight:600; }
 

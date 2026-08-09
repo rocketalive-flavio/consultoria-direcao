@@ -1,10 +1,7 @@
 // Formulário de aplicação — envia um POST JSON para o webhook do CRM.
-// ┌──────────────────────────────────────────────────────────────────────────┐
-// │ CONFIGURAÇÃO: cole a URL do webhook do CRM abaixo. Enquanto estiver      │
-// │ vazia, o formulário valida e avisa que o destino ainda não foi ligado    │
-// │ (nenhum lead é perdido em silêncio).                                     │
-// └──────────────────────────────────────────────────────────────────────────┘
-const WEBHOOK_URL = '';
+// Endpoint do CRM. O `slug` identifica de qual landing page veio o lead.
+// Se ficar vazio, o formulário avisa em vez de falhar em silêncio.
+const WEBHOOK_URL = 'https://rxwskzlwdsrdlcxocyai.supabase.co/functions/v1/form-webhook?slug=consultoria-direcao';
 
 import { $ } from '../utils/dom.js';
 

@@ -1,3 +1,0 @@
-# Site em validação — fora de buscadores até o lançamento.
-User-agent: *
-Disallow: /

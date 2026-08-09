@@ -173,12 +173,12 @@
 .ac__nota{ margin:0; max-width:52ch; color:var(--ink-1);
   font-size:clamp(.95rem,.9rem + .3vw,1.1rem); line-height:1.6; }
 
-/* Ilustração da narrativa: traço preto sobre branco puro. O multiply apaga o
-   branco contra o creme da seção, então ela fica só o desenho — sem precisar de
-   canal alfa e sem borda de recorte. */
-.ac__fig{ margin:0; justify-self:center; width:min(100%,26rem);
-  mix-blend-mode:multiply; opacity:.82; }
-.ac__fig img{ width:100%; height:auto; object-fit:contain; }
+/* Cena que ilustra a narrativa da seção. Em P&B clara, para conviver com o creme
+   sem virar um bloco escuro no meio da única seção clara da página. */
+.ac__fig{ margin:0; justify-self:center; width:min(100%,27rem);
+  border-radius:var(--r-lg); overflow:hidden; aspect-ratio:4/5; background:var(--field); }
+.ac__fig img{ width:100%; height:100%; object-fit:cover;
+  filter:grayscale(1) contrast(1.06); }
 /* A seleção padrão é creme sobre escuro; aqui o fundo é claro, então inverte. */
 .ac ::selection{ background:var(--ink); color:var(--paper-0); }
 @media (max-width:860px){

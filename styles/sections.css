@@ -272,7 +272,7 @@
 
 /* ══ 06 — QUEM CONDUZ ═════════════════════════════════════════════════════ */
 .bio{ display:grid; gap:clamp(1.6rem,3vw,2.6rem); grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr); align-items:start; }
-.bio__photo{ aspect-ratio:1/1; }
+.bio__photo{ aspect-ratio:3/4; }
 /* O retrato da Fernanda fica colorido — é a única pessoa identificada da página,
    e P&B aqui apagaria justamente o que precisa ser reconhecido. */
 .bio__photo img{ filter:none; }
@@ -289,7 +289,7 @@
 .edu ul{ margin:0; padding:0; list-style:none; display:grid; gap:.55rem; }
 .edu li{ padding-left:1.2em; position:relative; color:var(--paper-0); }
 .edu li::before{ content:""; position:absolute; left:0; top:.62em; width:.42em; height:1px; background:var(--accent); }
-@media (max-width:820px){ .bio{ grid-template-columns:1fr; } .bio__photo{ aspect-ratio:3/2; } }
+@media (max-width:820px){ .bio{ grid-template-columns:1fr; } .bio__photo{ aspect-ratio:4/5; } }
 
 .stats{ margin:clamp(1.8rem,4vw,2.8rem) 0 0; padding:0; display:grid; gap:clamp(.6rem,1.2vw,.9rem);
   grid-template-columns:repeat(auto-fit,minmax(min(100%,11rem),1fr)); }
